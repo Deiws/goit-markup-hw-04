@@ -538,8 +538,12 @@ img {
   border-color: #188ce8;
 }
 
-.link-client:hover,
+
 .link-client:focus .client-icon {
+  fill: var(--accent-color);
+}
+
+.link-client:hover .client-icon {
   fill: var(--accent-color);
 }
 
