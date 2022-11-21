@@ -6,6 +6,11 @@
   --logo-color: #000000;
   --background-color: #f5f4fa;
   --background-hero-color: #2f303a;
+  --cubic-anime: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button {
+  cursor: pointer;
 }
 
 h1,
@@ -26,12 +31,20 @@ body {
 
 /* ----------------HEADER----------------- */
 
+.line {
+  position: absolute;
+  display: block;
+  width: 1200px;
+  height: 0;
+  border: 1px solid #ececec;  
+}
+
 .container {
   width: 1200px;
   padding-left: 15px;
   padding-right: 15px;
   margin: 0 auto;
-  outline: 2px solid #92d113;
+  /* outline: 2px solid #92d113; */
 }
 
 .container-header {
@@ -85,6 +98,7 @@ body {
 }
 
 .header-nav-link {
+  position: relative;
   padding-top: 32px;
   padding-bottom: 32px;
   font-weight: 500;
@@ -92,7 +106,21 @@ body {
   line-height: calc(16 / 14);
   letter-spacing: 0.02em;
   color: var(--title-text-color);
+  transition: color 250ms var(--cubic-anime);
 }
+
+.header-nav-link.current::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 4px;
+  left: 0;
+  bottom: 0;
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
 .header-nav-link:hover,
 .header-nav-link:focus {
   color: var(--accent-color);
@@ -122,6 +150,7 @@ body {
   padding-bottom: 32px;
   margin-right: 50px;
   color: var(--text-color);
+  transition: color 250ms var(--cubic-anime);
 }
 
 .mail-icon {
@@ -140,6 +169,7 @@ body {
   padding-top: 32px;
   padding-bottom: 32px;
   color: var(--text-color);
+  transition: color 250ms var(--cubic-anime);
 }
 
 .contact-phone:hover,
@@ -185,6 +215,7 @@ body {
 
 .link-portfolio-cards {
   display: block;
+  transition: box-shadow 250ms var(--cubic-anime);
 }
 
 .link-portfolio-cards:hover {
@@ -202,6 +233,37 @@ body {
   padding-bottom: 94px;
 }
 
+/* .our-portfolio {
+  position: relative;
+} */
+
+.portfolio-text-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-text {
+  position: absolute;
+  top: 0;
+  background-color: rgba(33, 150, 243, 0.9);
+  color: var(--white-color);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(28 / 18);
+  letter-spacing: 0.03em;
+  padding: 63px 24px;
+  transform: translateY(100%);
+  transition: transform 250ms var(--cubic-anime);
+}
+
+.link-portfolio-cards:hover .portfolio-text {
+  transform: translateY(0);
+}
+
+.portfolio-text-wrap {
+  position: relative;
+}
+
 .portfolio-btn {
   display: inline-block;
   font-family: inherit;
@@ -216,6 +278,8 @@ body {
     0px 2px 2px rgba(0, 0, 0, 0.12); */
   border-radius: 4px;
   cursor: pointer;
+  transition: color 250ms var(--cubic-anime),
+    box-shadow 250ms var(--cubic-anime), background 250ms var(--cubic-anime);
 }
 .portfolio-btn:hover,
 .portfolio-btn:focus {
@@ -400,6 +464,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background 250ms var(--cubic-anime), fill 250ms var(--cubic-anime);
 }
 
 .team-soc-link:hover,
@@ -482,6 +547,7 @@ img {
   align-items: center;
   letter-spacing: 0.06em;
   cursor: pointer;
+  transition: background-color 250ms var(--cubic-anime);
 
   color: var(--white-color);
 
@@ -531,13 +597,13 @@ img {
   align-items: center;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+  transition: border-color 250ms var(--cubic-anime);
 }
 
 .link-client:hover,
 .link-client:focus {
   border-color: #188ce8;
 }
-
 
 .link-client:focus .client-icon {
   fill: var(--accent-color);
@@ -549,6 +615,7 @@ img {
 
 .client-icon {
   fill: #afb1b8;
+  transition: fill 250ms var(--cubic-anime);
 }
 
 /* -------------FOOTER-------------------- */
@@ -581,12 +648,14 @@ address {
   line-height: calc(24 / 14);
   letter-spacing: 0.03em;
   color: var(--white-color);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .linknew {
   margin-top: 9px;
   margin-bottom: 9px;
   color: var(--text-color);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .linknew:hover,
@@ -633,6 +702,7 @@ address {
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.1);
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-soc-link:hover,
@@ -642,4 +712,50 @@ address {
 
 .footer-soc-icon {
   fill: var(--white-color);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms var(--cubic-anime),
+    visibility 250ms var(--cubic-anime);
+}
+
+.modal {
+  width: 528px;
+  height: 581px;
+  background-color: var(--white-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 4px;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transfopm 250ms var(--cubic-anime);
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
